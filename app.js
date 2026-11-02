@@ -1,168 +1,5 @@
 'use strict';
-const guides = [
- {id:'samsung-4c',code:'4C / 4E',aliases:['4C','4E'],brand:'Samsung',category:'appliances',device:'Washing machine',title:'Water supply needs attention',meaning:'The washer is reporting a water-supply problem. A restricted inlet hose or insufficient flow can prevent filling.',score:4,recommendation:'Try simple checks at home',reason:'External checks are approachable. Persistent errors need service; the code does not identify a failed part.',warning:'Power off and unplug before inspecting the hose. Do not move a heavy machine alone or disconnect a hose while the water is on.',steps:['With power disconnected, inspect the accessible inlet hose for damage or sharp bends.','Check that the supply tap is fully open.','If the error persists, follow your model manual and the linked Samsung guide for inlet-filter and dispenser checks.','If the code returns after these checks, contact Samsung service.'],source:'https://www.samsung.com/uk/support/home-appliances/the-4e-error-is-displayed-on-the-panel-of-my-washing-machine-what-can-i-do/',sourceName:'Samsung · 4E / 4C support',context:'Samsung washing machines; consult your model manual.',video:'https://www.youtube.com/watch?v=0C6nVEs6saA',videoName:'Water pressure checks · Samsung UK',videoNote:'Manufacturer tutorial; confirm model applicability. Not transcript-reviewed.'},
- {id:'bosch-e15',code:'E15',aliases:['E15','E:15'],brand:'Bosch',category:'appliances',device:'Dishwasher',title:'Water protection has activated',meaning:'A safety sensor has detected water in the dishwasher base. The source of the water still needs diagnosis.',score:1,recommendation:'Contact a professional',reason:'A leak inside the appliance needs assessment. Clearing the display does not establish that the leak is repaired.',warning:'Stop using the dishwasher. Do not tip it to clear the warning or bypass its protection system.',steps:['Record the displayed code and the appliance model number.','Follow the shutdown instructions in your model manual.','Contact Bosch support or an appliance technician to investigate the water in the base.'],source:'https://www.bosch-home.com/us/owner-support/get-support/support-selfhelp-dishwasher-error-e15',sourceName:'Bosch · E15 support',context:'Bosch dishwasher family; exact model not confirmed.'},
- {id:'windows-43',code:'Code 43',aliases:['43','CODE43','ERROR43'],brand:'Windows',category:'computers',device:'Graphics device',title:'Windows stopped the graphics device',meaning:'The graphics device reported a problem to Windows. Driver trouble or a hardware fault can be responsible.',score:3,recommendation:'Try software checks at home',reason:'Driver checks are manageable, but this code cannot distinguish a software issue from failing hardware.',warning:'This guide covers graphics devices. For a different device reporting Code 43, use its manufacturer documentation.',steps:['In Device Manager, open the affected graphics device’s Properties.','Under Driver, try Update Driver. Use Windows or the hardware manufacturer’s official downloads.','If the issue began after a driver update, check whether Roll Back Driver is available.','If the problem persists, follow Microsoft’s linked reinstall procedure or contact the device manufacturer.'],source:'https://support.microsoft.com/en-us/windows/hardware/display-graphics/fix-graphics-device-problems-with-error-code-43',sourceName:'Microsoft · Graphics device Code 43',context:'Windows graphics-device context; hardware model not confirmed.'},
- {id:'obd-p0300',code:'P0300',aliases:['P0300','P 0300'],brand:'OBD-II',category:'cars',device:'Engine diagnostics',title:'Random or multiple-cylinder misfire',meaning:'The engine controller detected misfiring across cylinders, or could not isolate the affected cylinder. This does not identify which component needs repair.',score:1,recommendation:'Arrange professional diagnosis',reason:'Diagnosis depends on the vehicle, companion codes and operating conditions. Replacing parts based on this code alone is unreliable.',warning:'If the engine light flashes or the engine runs very roughly, stop safely and seek roadside advice before continuing.',steps:['Record all codes and symptoms without erasing diagnostic information.','Note the vehicle make, model, year and engine.','Ask a qualified technician to diagnose the misfire using the vehicle-specific service procedure.'],source:'https://www.fordservicecontent.dealerconnection.com/pubs/content/~WVX2/~MUS~LEN/15/VX25056.HTM',sourceName:'Ford · Diagnostic code definitions',context:'General code definition supported by Ford documentation. Repair procedures vary by vehicle.'}
-];
-guides.push(...[
-  {
-    "id": "samsung-5c",
-    "code": "5C / 5E",
-    "aliases": [
-      "5C",
-      "5E"
-    ],
-    "brand": "Samsung",
-    "category": "appliances",
-    "device": "Washing machine",
-    "title": "Water is not draining",
-    "meaning": "The washer has detected a drainage problem. A restricted hose or filter can be involved.",
-    "score": 3,
-    "recommendation": "Try accessible checks first",
-    "reason": "Hose inspection is simple; filter access depends on your model.",
-    "warning": "Disconnect power before maintenance. Let hot water cool. Do not open the filter until water has been drained using your model’s procedure.",
-    "steps": [
-      "Inspect the accessible drain hose for kinks.",
-      "Use your model manual and Samsung’s guide to drain residual water and clean an accessible pump filter.",
-      "Contact Samsung if the error persists."
-    ],
-    "source": "https://www.samsung.com/uk/support/home-appliances/how-to-resolve-a-5e-or-5c-error-code-on-a-washing-machine/",
-    "sourceName": "Samsung · Drainage error support",
-    "context": "Samsung washing-machine family; filter access varies by model."
-  },
-  {
-    "id": "bosch-e24",
-    "code": "E24",
-    "aliases": [
-      "E24",
-      "E:24",
-      "E-24"
-    ],
-    "brand": "Bosch",
-    "category": "appliances",
-    "device": "Dishwasher",
-    "title": "Drainage path needs checking",
-    "meaning": "Bosch lists drainage restrictions and pump-cover problems among the possible causes. The code alone does not establish which part is faulty.",
-    "score": 3,
-    "recommendation": "Check accessible drainage components",
-    "reason": "An external hose check is approachable; internal access requires the model manual and appropriate skills.",
-    "warning": "Disconnect power before inspection. Sharp debris can be present. Avoid pump access if you cannot follow the model-specific instructions safely.",
-    "steps": [
-      "Check the accessible drain hose for sharp bends.",
-      "Follow the model manual for accessible filter and pump-cover checks.",
-      "If the error returns, arrange Bosch service."
-    ],
-    "source": "https://www.bosch-home.com/us/en/c/spotlight/blta5a02e4f244618c3",
-    "sourceName": "Bosch · Dishwasher error-code support",
-    "context": "Bosch dishwasher family; model-specific procedure required."
-  },
-  {
-    "id": "bosch-e25",
-    "code": "E25",
-    "aliases": [
-      "E25",
-      "E:25",
-      "E-25"
-    ],
-    "brand": "Bosch",
-    "category": "appliances",
-    "device": "Dishwasher",
-    "title": "Drain pump or cover needs checking",
-    "meaning": "Bosch lists drainage restrictions and pump-cover problems among the possible causes. The code alone does not establish which part is faulty.",
-    "score": 3,
-    "recommendation": "Check accessible drainage components",
-    "reason": "An external hose check is approachable; internal access requires the model manual and appropriate skills.",
-    "warning": "Disconnect power before inspection. Sharp debris can be present. Avoid pump access if you cannot follow the model-specific instructions safely.",
-    "steps": [
-      "Check the accessible drain hose for sharp bends.",
-      "Follow the model manual for accessible filter and pump-cover checks.",
-      "If the error returns, arrange Bosch service."
-    ],
-    "source": "https://www.bosch-home.com/us/en/c/spotlight/blta5a02e4f244618c3",
-    "sourceName": "Bosch · Dishwasher error-code support",
-    "context": "Bosch dishwasher family; model-specific procedure required."
-  },
-  {
-    "id": "lg-ie",
-    "code": "IE",
-    "aliases": [
-      "IE"
-    ],
-    "brand": "LG",
-    "category": "appliances",
-    "device": "Washing machine",
-    "title": "Water inlet problem",
-    "meaning": "The washer is not receiving sufficient water.",
-    "score": 3,
-    "recommendation": "Try the manual’s basic checks",
-    "reason": "Start with external or load checks. Persistent errors require service.",
-    "warning": "Never reach into a moving drum. Disconnect power before maintenance; do not open appliance panels.",
-    "steps": [
-      "Check the supply taps and accessible inlet hose for a restriction.",
-      "If the warning continues, contact LG service with the model and code."
-    ],
-    "source": "https://www.lg.com/content/dam/channel/wcms/au/support/products/documents/WT-R107.pdf#page=36",
-    "sourceName": "LG · WT-R107 owner manual, page 35",
-    "context": "Documented for LG WT-R107 only. Other models require their own documentation.",
-    "models": [
-      "WT-R107"
-    ]
-  },
-  {
-    "id": "lg-oe",
-    "code": "OE",
-    "aliases": [
-      "OE"
-    ],
-    "brand": "LG",
-    "category": "appliances",
-    "device": "Washing machine",
-    "title": "Water outlet problem",
-    "meaning": "The washer is reporting a drainage problem.",
-    "score": 3,
-    "recommendation": "Try the manual’s basic checks",
-    "reason": "Start with external or load checks. Persistent errors require service.",
-    "warning": "Never reach into a moving drum. Disconnect power before maintenance; do not open appliance panels.",
-    "steps": [
-      "Inspect the accessible drain hose for bends and compare its installation with the manual.",
-      "If the warning continues, contact LG service with the model and code."
-    ],
-    "source": "https://www.lg.com/content/dam/channel/wcms/au/support/products/documents/WT-R107.pdf#page=36",
-    "sourceName": "LG · WT-R107 owner manual, page 35",
-    "context": "Documented for LG WT-R107 only. Other models require their own documentation.",
-    "models": [
-      "WT-R107"
-    ]
-  },
-  {
-    "id": "lg-ue",
-    "code": "UE",
-    "aliases": [
-      "UE"
-    ],
-    "brand": "LG",
-    "category": "appliances",
-    "device": "Washing machine",
-    "title": "Load is out of balance",
-    "meaning": "The washer is reporting an unbalanced load.",
-    "score": 4,
-    "recommendation": "Try the manual’s basic checks",
-    "reason": "Start with external or load checks. Persistent errors require service.",
-    "warning": "Never reach into a moving drum. Disconnect power before maintenance; do not open appliance panels.",
-    "steps": [
-      "Pause the washer, wait for all movement to stop, then redistribute the load as instructed in the manual.",
-      "If the warning continues, contact LG service with the model and code."
-    ],
-    "source": "https://www.lg.com/content/dam/channel/wcms/au/support/products/documents/WT-R107.pdf#page=36",
-    "sourceName": "LG · WT-R107 owner manual, page 35",
-    "context": "Documented for LG WT-R107 only. Other models require their own documentation.",
-    "models": [
-      "WT-R107"
-    ]
-  }
-]);
-guides.forEach(g=>{g.reviewed='2026-11-02';g.models=g.models||[];});
+const guides = window.ERRORIS_CATALOGUE;
 const $=s=>document.querySelector(s);
 const escapeHTML=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm=v=>v.toUpperCase().replace(/[^A-Z0-9]/g,'');
@@ -172,11 +9,11 @@ function toast(message){$('#toast').textContent=message;$('#toast').style.displa
 function saveDevices(){updateDeviceChoices();try{localStorage.setItem('erroris.devices',JSON.stringify(devices));}catch{toast('Browser storage unavailable; devices saved for this visit.');}renderDevices();}
 function renderDevices(){ $('#deviceCount').textContent=devices.length;$('#deviceList').innerHTML=devices.length?devices.map((d,i)=>`<div class="device-row"><div><strong>${escapeHTML(d.brand)} ${escapeHTML(d.model)}</strong><small>${escapeHTML(d.type)}</small></div><button data-remove="${i}" aria-label="Remove ${escapeHTML(d.brand)} device">Remove</button></div>`).join(''):'<p>No devices yet. Add your first one above.</p>';}
 function searchLinks(query){return {web:'https://www.google.com/search?q='+encodeURIComponent(query+' error code manufacturer support'),youtube:'https://www.youtube.com/results?search_query='+encodeURIComponent(query+' troubleshooting official')};}
-function findGuides(query,category,brand='',device=''){const tokens=query.toUpperCase().match(/\b(?:[A-Z][ :\-]*\d+[A-Z]*|[A-Z]+\d+|\d+[A-Z]*|[A-Z]+)\b/g)||[];const codes=tokens.map(norm);const embeddedBrand=['Samsung','Bosch','LG','Windows'].find(b=>new RegExp('\\b'+b+'\\b','i').test(query));if(brand&&embeddedBrand&&brand.toLowerCase()!==embeddedBrand.toLowerCase())return [];const wanted=brand||embeddedBrand||'';return guides.filter(g=>(category==='all'||g.category===category)&&(!wanted||g.brand.toLowerCase()===wanted.toLowerCase())&&(!device||g.device===device)).filter(g=>g.aliases.some(a=>codes.includes(norm(a)))||[g.brand,g.device,g.title].some(v=>v.toLowerCase()===query.toLowerCase().trim()));}
+function findGuides(query,category,brand='',device=''){const brands=[...new Set(guides.map(g=>g.brand))];const embedded=brands.filter(b=>new RegExp('(?:^|[^A-Za-z])'+b.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?:$|[^A-Za-z])','i').test(query));if(brand&&embedded.some(b=>b.toLowerCase()!==brand.toLowerCase()))return [];const wanted=brand||embedded[0]||'';return guides.filter(g=>(category==='all'||g.category===category)&&(!wanted||g.brand.toLowerCase()===wanted.toLowerCase())&&(!device||g.device===device)).filter(g=>g.aliases.some(a=>{const groups=a.toUpperCase().match(/[A-Z]+|[0-9]+/g);const pattern=groups.join('[ \\	:\\-]*');return new RegExp('(?:^|[^A-Z0-9])'+pattern+'(?:$|[^A-Z0-9])','i').test(query);})||[g.brand,g.device,g.title].some(v=>v.toLowerCase()===query.toLowerCase().trim()));}
 function showResults(){ openTab('find'); $('#results').hidden=false; $('#lookup').hidden=true; }
-function lookup(query,category){const brand=$('#lookupBrand').value.trim(), device=$('#lookupDevice').value;const found=findGuides(query,category,brand,device);if(found.length===1){renderGuide(found[0]);}else if(found.length){$('#results').innerHTML=`<div class="result-shell"><span class="eyebrow">CHOOSE THE RIGHT CONTEXT</span><h2>Which device do you mean?</h2>${found.map(libraryItem).join('')}</div>`;}else{activeGuide=null;const links=searchLinks([brand,device,$('#lookupModel').value,query].join(' '));$('#results').innerHTML=`<div class="result-shell empty"><span class="eyebrow">MORE INFORMATION NEEDED</span><h2>No verified match in the starter library</h2><p>We haven’t verified “${escapeHTML(query)}” for this device. Add a brand and exact model to your search. We won’t guess what this code means.</p><div class="action-row"><a class="resource" target="_blank" rel="noopener noreferrer" href="${links.web}"><strong>Search manufacturer documentation ↗</strong><small>External web search · results not reviewed</small></a><a class="resource" target="_blank" rel="noopener noreferrer" href="${links.youtube}"><strong>Search YouTube ↗</strong><small>External search · confirm the model and procedure</small></a></div><p class="source-meta">Current coverage: ${guides.length} sourced guides. Browse the library for supported brands and contexts.</p></div>`;}showResults();}
-function libraryItem(g){return `<button class="library-item" data-guide="${g.id}"><strong>${g.brand} · ${g.code}</strong><small>${g.device} — ${g.title} ↗</small></button>`;}
-function renderGuide(g){activeGuide=g;const enteredModel=$('#lookupModel').value.trim();const modelMatch=g.models.some(m=>norm(m)===norm(enteredModel));const modelMismatch=g.models.length>0&&enteredModel&&!modelMatch;const saved=devices.filter(d=>d.type===g.category);$('#results').innerHTML=`<article class="result-shell"><div class="result-head"><span class="badge">${modelMatch?'MODEL DOCUMENTATION MATCH':modelMismatch?'MODEL NOT COVERED BY THIS GUIDE':'PRODUCT FAMILY · MODEL UNCONFIRMED'}</span><button id="copySummary">Copy repair summary ↗</button></div><h2 class="result-title">${g.brand} ${g.code} <span class="muted">/ ${g.device}</span></h2><h3>${g.title}</h3><p class="result-intro">${g.meaning}</p><div class="match-note">${g.context} ${enteredModel?'Your entered model: '+escapeHTML(enteredModel)+'. ':''}${modelMatch?'The model number matches the linked manual; the cause still needs diagnosis. ':modelMismatch?'Do not apply these steps to your model. Locate its own manual first. ':''}The code identifies a detected condition; it does not confirm the underlying cause.</div><div class="warning">${g.warning}</div><div class="result-columns"><section><span class="eyebrow">YOUR NEXT STEPS</span><h2>Start here.</h2><ol class="steps">${(modelMismatch?['Find the manufacturer manual for your exact model before attempting troubleshooting.','Ask the manufacturer or a qualified professional to confirm the code.']:g.steps).map((s,i)=>`<li><input type="checkbox" id="step${i}" data-step="${i}"><label for="step${i}"><strong>${String(i+1).padStart(2,'0')}.</strong> ${s}</label></li>`).join('')}</ol><div class="action-row"><button class="primary" id="fixedBtn">That fixed it ✓</button><button class="secondary" id="notFixedBtn">Still happening</button></div><div id="outcome" aria-live="polite"></div><h3 class="link-heading">Repair or replace?</h3><p class="muted">This code alone cannot establish that the device is unrepairable. Get a diagnosis and quote, then compare warranty coverage, parts availability and replacement cost.</p></section><aside><div class="recommendation ${g.score===1?'professional':''}"><h3>${g.recommendation}</h3><div class="score" aria-label="DIY fixability ${g.score} out of 5">${Array.from({length:5},(_,i)=>`<i class="${i<g.score?'filled':''}"></i>`).join('')}</div><strong>DIY fixability ${g.score}/5</strong><p>${g.reason}</p><small>5 = easy checks · 1 = professional recommended<br>Erroris assessment, not a manufacturer rating.</small></div><h3 class="link-heading">Documentation & how-to guides</h3><a class="resource" href="${g.source}" target="_blank" rel="noopener noreferrer"><strong>${g.sourceName} ↗</strong><small>Official source · checked 2 November 2026</small></a>${g.video?`<a class="resource" href="${g.video}" target="_blank" rel="noopener noreferrer"><strong>▶ ${g.videoName} ↗</strong><small>${g.videoNote}</small></a>`:''}<label class="model-label">Refine external searches with your model<input class="model-input" id="searchModel" maxlength="100" placeholder="e.g. full model number" value="${escapeHTML(enteredModel)}"></label>${saved.length?`<label class="model-label">Use a saved device<select id="savedDevice"><option value="">Select device</option>${saved.map((d,i)=>`<option value="${i}">${escapeHTML(d.brand+' '+d.model)}</option>`).join('')}</select></label>`:''}<div id="externalLinks"></div><p class="source-meta">External searches are not curated recommendations. Adding a model does not verify this guide against that model.</p></aside></div></article>`;updateLinks();if($('#savedDevice'))$('#savedDevice').onchange=e=>{const d=saved[e.target.value];$('#searchModel').value=d?d.brand+' '+d.model:'';updateLinks();};$('#searchModel').oninput=updateLinks;$('#fixedBtn').onclick=()=>{$('#outcome').className='outcome';$('#outcome').textContent='Glad the issue cleared. If it returns, record the symptoms and contact support. A cleared code does not prove an underlying fault is repaired.';};$('#notFixedBtn').onclick=()=>{$('#outcome').className='outcome';$('#outcome').innerHTML=`Stop repeating checks that have not helped. Contact ${g.category==='cars'?'a qualified vehicle technician':'the manufacturer or a qualified technician'} with your model, symptoms and completed checks. Use “Copy repair summary” above to prepare a handoff.`;};$('#copySummary').onclick=copySummary;}
+function lookup(query,category){const brand=$('#lookupBrand').value.trim(), device=$('#lookupDevice').value;const found=findGuides(query,category,brand,device);if(found.length===1){renderGuide(found[0]);}else if(found.length){$('#results').innerHTML=`<div class="result-shell"><span class="eyebrow">CHOOSE THE RIGHT CONTEXT</span><h2>Which device do you mean?</h2>${found.map(libraryItem).join('')}</div>`;}else{activeGuide=null;const links=searchLinks([brand,device,$('#lookupModel').value,query].join(' '));$('#results').innerHTML=`<div class="result-shell empty"><span class="eyebrow">MORE INFORMATION NEEDED</span><h2>No verified match in the starter library</h2><p>We haven’t verified “${escapeHTML(query)}” for this device. Add a brand and exact model to your search. We won’t guess what this code means.</p><div class="action-row"><a class="resource" target="_blank" rel="noopener noreferrer" href="${links.web}"><strong>Search manufacturer documentation ↗</strong><small>External web search · results not reviewed</small></a><a class="resource" target="_blank" rel="noopener noreferrer" href="${links.youtube}"><strong>Search YouTube ↗</strong><small>External search · confirm the model and procedure</small></a></div><p class="source-meta">Current coverage: ${guides.length} source-backed entries. Browse the library for supported brands and contexts.</p></div>`;}showResults();}
+function libraryItem(g){return `<button class="library-item" data-guide="${g.id}"><strong>${g.brand} · ${g.code}</strong><small>${g.device} — ${g.title} · ${g.kind==='reference'?'Source reference':'Guided checks'} ↗</small></button>`;}
+function renderGuide(g){activeGuide=g;const enteredModel=$('#lookupModel').value.trim();const modelMatch=g.models.some(m=>norm(m)===norm(enteredModel));const modelMismatch=g.models.length>0&&enteredModel&&!modelMatch;const saved=devices.filter(d=>d.type===g.category);$('#results').innerHTML=`<article class="result-shell"><div class="result-head"><span class="badge">${modelMatch?'MODEL DOCUMENTATION MATCH':modelMismatch?'MODEL NOT COVERED BY THIS GUIDE':'PRODUCT FAMILY · MODEL UNCONFIRMED'}</span><button id="copySummary">Copy repair summary ↗</button></div><h2 class="result-title">${g.brand} ${g.code} <span class="muted">/ ${g.device}</span></h2><h3>${g.title}</h3><p class="result-intro">${g.meaning}</p><p class="source-meta">${g.kind==='reference'?'SOURCE REFERENCE · Definition reviewed; repair steps and DIY rating not assessed.':'TROUBLESHOOTING GUIDE · Editorial DIY assessment.'} · Region: ${escapeHTML(g.region||'See source')}</p><div class="match-note">${g.context} ${enteredModel?'Your entered model: '+escapeHTML(enteredModel)+'. ':''}${modelMatch?'The model number matches the linked manual; the cause still needs diagnosis. ':modelMismatch?'Do not apply these steps to your model. Locate its own manual first. ':''}The code identifies a detected condition; it does not confirm the underlying cause.</div><div class="warning">${g.warning}</div><div class="result-columns"><section><span class="eyebrow">YOUR NEXT STEPS</span><h2>Start here.</h2><ol class="steps">${(modelMismatch?['Find the manufacturer manual for your exact model before attempting troubleshooting.','Ask the manufacturer or a qualified professional to confirm the code.']:g.steps).map((s,i)=>`<li><input type="checkbox" id="step${i}" data-step="${i}"><label for="step${i}"><strong>${String(i+1).padStart(2,'0')}.</strong> ${s}</label></li>`).join('')}</ol><div class="action-row"><button class="primary" id="fixedBtn">That fixed it ✓</button><button class="secondary" id="notFixedBtn">Still happening</button></div><div id="outcome" aria-live="polite"></div><h3 class="link-heading">Repair or replace?</h3><p class="muted">This code alone cannot establish that the device is unrepairable. Get a diagnosis and quote, then compare warranty coverage, parts availability and replacement cost.</p></section><aside><div class="recommendation ${g.score===1?'professional':''}"><h3>${modelMismatch?'Confirm your model with a professional':g.recommendation}</h3><div class="score" aria-label="${g.score===null?'DIY fixability not assessed':'DIY fixability '+g.score+' out of 5'}">${Array.from({length:5},(_,i)=>`<i class="${i<g.score?'filled':''}"></i>`).join('')}</div><strong>DIY fixability ${g.score===null?'Not assessed':g.score+'/5'}</strong><p>${g.reason}</p><small>${g.score===null?'A definition is not a diagnosis or repair instruction.':'5 = easy checks · 1 = professional recommended<br>Erroris assessment, not a manufacturer rating.'}</small></div><h3 class="link-heading">Documentation & how-to guides</h3><a class="resource" href="${g.source}" target="_blank" rel="noopener noreferrer"><strong>${g.sourceName} ↗</strong><small>Official source · checked 2 November 2026</small></a>${g.video?`<a class="resource" href="${g.video}" target="_blank" rel="noopener noreferrer"><strong>▶ ${g.videoName} ↗</strong><small>${g.videoNote}</small></a>`:''}<label class="model-label">Refine external searches with your model<input class="model-input" id="searchModel" maxlength="100" placeholder="e.g. full model number" value="${escapeHTML(enteredModel)}"></label>${saved.length?`<label class="model-label">Use a saved device<select id="savedDevice"><option value="">Select device</option>${saved.map((d,i)=>`<option value="${i}">${escapeHTML(d.brand+' '+d.model)}</option>`).join('')}</select></label>`:''}<div id="externalLinks"></div><p class="source-meta">External searches are not curated recommendations. Adding a model does not verify this guide against that model.</p></aside></div></article>`;updateLinks();if($('#savedDevice'))$('#savedDevice').onchange=e=>{const d=saved[e.target.value];$('#searchModel').value=d?d.brand+' '+d.model:'';updateLinks();};$('#searchModel').oninput=updateLinks;$('#fixedBtn').onclick=()=>{$('#outcome').className='outcome';$('#outcome').textContent='Glad the issue cleared. If it returns, record the symptoms and contact support. A cleared code does not prove an underlying fault is repaired.';};$('#notFixedBtn').onclick=()=>{$('#outcome').className='outcome';$('#outcome').innerHTML=`Stop repeating checks that have not helped. Contact ${g.category==='cars'?'a qualified vehicle technician':'the manufacturer or a qualified technician'} with your model, symptoms and completed checks. Use “Copy repair summary” above to prepare a handoff.`;};$('#copySummary').onclick=copySummary;}
 function updateLinks(){if(!activeGuide)return;const q=[activeGuide.brand,activeGuide.device,activeGuide.code,$('#searchModel').value].join(' ');const links=searchLinks(q);$('#externalLinks').innerHTML=`<a class="resource" href="${links.youtube}" target="_blank" rel="noopener noreferrer"><strong>▶ Search YouTube tutorials ↗</strong><small>External search · videos not reviewed or ranked</small></a><a class="resource" href="${links.web}" target="_blank" rel="noopener noreferrer"><strong>Search written guides ↗</strong><small>External search · check exact model applicability</small></a>`;}
 async function copySummary(){const g=activeGuide;const checks=[...document.querySelectorAll('[data-step]:checked')].map(el=>el.nextElementSibling.textContent);const text=`Erroris repair summary\n${g.brand} ${g.device} — ${g.code}\nModel: ${$('#searchModel').value||'Not supplied'}\nDefinition: ${g.meaning}\nRecommendation: ${g.recommendation}\nChecks marked complete:\n${checks.length?checks.map(s=>'- '+s).join('\n'):'None recorded'}\nModel applicability: ${g.models.some(m=>norm(m)===norm($('#searchModel').value))?'model number matches linked manual':'unconfirmed'}.\nSource: ${g.source}`;try{await navigator.clipboard.writeText(text);toast('Repair summary copied');}catch{const blob=new Blob([text],{type:'text/plain'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='erroris-repair-summary.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Repair summary downloaded');}}
 $('#searchForm').onsubmit=e=>{e.preventDefault();const q=$('#query').value.trim();if(q)lookup(q,$('#category').value);};
@@ -191,3 +28,7 @@ document.querySelectorAll('.logo').forEach(link=>link.addEventListener('click',e
 $('#lookupSaved').addEventListener('change',e=>{const d=devices[Number(e.target.value)];if(e.target.value===''||!d)return;$('#lookupBrand').value=d.brand;$('#lookupModel').value=d.model;$('#category').value=d.type;$('#lookupDevice').value=d.device||'';});
 function updateDeviceChoices(){ $('#lookupSaved').innerHTML='<option value="">Choose a saved device</option>'+devices.map((d,i)=>'<option value="'+i+'">'+escapeHTML(d.brand+' '+d.model)+'</option>').join('');}
 updateDeviceChoices();
+
+function refreshCatalogueUI(){const brands=[...new Set(guides.map(g=>g.brand))].sort();$('#brands').innerHTML=brands.map(b=>'<option value="'+escapeHTML(b)+'">').join('');$('#libraryBrand').innerHTML='<option value="">All brands</option>'+brands.map(b=>'<option>'+escapeHTML(b)+'</option>').join('');document.querySelectorAll('.category-card').forEach(card=>{const rows=guides.filter(g=>g.category===card.dataset.category);const label=card.querySelector('.card-bottom');if(rows.length)label.innerHTML=rows.length+' catalogue entries <b>↗</b>';});$('#coverageSummary').textContent=guides.length+' entries · '+brands.filter(b=>!['Windows','OBD-II'].includes(b)).length+' manufacturers · '+guides.filter(g=>g.kind==='guide').length+' troubleshooting guides';$('#coverageRows').innerHTML=brands.map(b=>{const rows=guides.filter(g=>g.brand===b);return '<tr><td>'+escapeHTML(b)+'</td><td>'+rows.length+'</td><td>'+rows.filter(g=>g.kind==='guide').length+'</td><td>'+escapeHTML([...new Set(rows.map(g=>g.region||'See source'))].join(', '))+'</td></tr>';}).join('');}
+function filterLibrary(){const brand=$('#libraryBrand').value,q=$('#libraryQuery').value.trim().toLowerCase();const rows=guides.filter(g=>(!brand||g.brand===brand)&&(!q||[g.brand,g.code,g.title,g.device].join(' ').toLowerCase().includes(q)));$('#library').hidden=false;$('#library').innerHTML=rows.length?rows.map(libraryItem).join(''):'<p>No matching catalogue entries.</p>';}
+$('#libraryBrand').onchange=filterLibrary;$('#libraryQuery').oninput=filterLibrary;refreshCatalogueUI();
