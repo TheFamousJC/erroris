@@ -3,12 +3,17 @@
 Live: https://thefamousjc.github.io/erroris/
 Repository: https://github.com/TheFamousJC/erroris
 
-Static website with 31 source-backed guides for browser, connection, HTTP and Windows errors. Every guide has explanations, practical checks, escalation advice and linked documentation. HTTP guides distinguish visitors from authorized site administrators. Difficulty, required access and impact replace appliance DIY ratings. Guide detail has tabs for explanation, steps and sources.
+Static lookup with 156 troubleshooting guides and 2,446 code references (2,602 entries total). Coverage includes browsers, internet connections, HTTP, Windows, macOS, apps, email, developer tools and explicitly labelled legacy hardware.
 
-Edit data/catalogue.json, then run node scripts/build-catalogue.cjs and node scripts/test-catalogue.cjs. The deployed repository root contains dist files. Erroris-source.zip contains the full source tree with data and scripts.
+Guides contain practical checks and escalation advice; they do not diagnose a device. References contain identifiers and context-gathering advice, not a reviewed fix. 2,461 Win32 identifier pairs discovered through Lifewire were cross-checked against Microsoft's official decimal/symbol definitions; 32 have contextual troubleshooting advice. 92 unmatched identifiers were held out. No bulk secondary article descriptions were copied. The HP manual is version 1.0 from July 1997. Secondary beep-code tables require exact-model verification.
 
-The previous 130-entry appliance/car/printer collection is preserved separately in outputs/Erroris-before-computer-focus.zip in the local project. It is not loaded by the active site. Existing browser device records have not been deleted; the new UI uses a separate key for recent guide IDs.
+Browse defaults to guides, with reference/all filters and 20 entries per page. Lookup searches both kinds and shows up to 50 matches. Source labels distinguish official documentation from secondary references. Audience-specific steps, checklists and source tabs remain available. Always seek the help and advice of a professional.
 
-No AI, live search API, automatic device/network tests, screenshot recognition, video ranking or live outage checks are connected. External searches open Google/YouTube and send their query terms to those providers. Version notes are context, not verified compatibility. No support messages are sent automatically.
+Edit data/catalogue.json, then run:
 
-The bounded collector remains available for producing unreviewed candidates. Local HTTP collection is blocked by DNS in this environment; the active guides were assembled through web-assisted review of primary documentation. See scripts/COLLECTION.md.
+    node scripts/build-catalogue.cjs
+    node scripts/test-catalogue.cjs
+
+The deployed repository root contains dist files. Erroris-source.zip contains the full source tree with data and scripts. Local provenance reports are in outputs/lifewire-crosscheck-report.json and outputs/digital-expansion-report.json.
+
+No AI, live search API, automatic device/network tests, video ranking or live outage checks are connected. Google/YouTube links are external searches, not reviewed results. Version notes do not verify compatibility. Recent IDs are saved only in the browser. Earlier appliance research is archived separately.
