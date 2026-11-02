@@ -1,11 +1,14 @@
-# Erroris starter
+# Erroris — computer and internet help
 
-Open `dist/index.html` in a browser, or run `python -m http.server 4173 --directory dist` from this folder and visit http://localhost:4173.
+Live: https://thefamousjc.github.io/erroris/
+Repository: https://github.com/TheFamousJC/erroris
 
-Dependency-free static website with 130 catalogue entries: 10 guided troubleshooting records and 120 reviewed source references. Covers 21 manufacturers plus Windows and OBD-II diagnostic contexts. Includes brand filters, product/model matching, coverage reporting, repair summaries and local saved devices. Reference entries deliberately have no DIY score or reviewed repair procedure.
+Static website with 31 source-backed guides for browser, connection, HTTP and Windows errors. Every guide has explanations, practical checks, escalation advice and linked documentation. HTTP guides distinguish visitors from authorized site administrators. Difficulty, required access and impact replace appliance DIY ratings. Guide detail has tabs for explanation, steps and sources.
 
-Coverage is deliberately explicit. No AI inference, OCR, live search API, automatic video ranking, or service booking is implemented. Exact model matching applies only to the finite models listed in a record, not arbitrary models or series suffixes. Unknown codes return a no-match state with external search links. Device records stay in browser localStorage; external searches send the chosen terms to Google or YouTube.
+Edit data/catalogue.json, then run node scripts/build-catalogue.cjs and node scripts/test-catalogue.cjs. The deployed repository root contains dist files. Erroris-source.zip contains the full source tree with data and scripts.
 
-Published via GitHub Pages: https://thefamousjc.github.io/erroris/ — repository https://github.com/TheFamousJC/erroris. The repository root contains the contents of dist.
+The previous 130-entry appliance/car/printer collection is preserved separately in outputs/Erroris-before-computer-focus.zip in the local project. It is not loaded by the active site. Existing browser device records have not been deleted; the new UI uses a separate key for recent guide IDs.
 
-Collection workflow: see scripts/COLLECTION.md. Run `node scripts/build-catalogue.cjs`, `node scripts/test-catalogue.cjs` and `node scripts/test-collector.cjs`. The collector produces review candidates only. This import used web-assisted manufacturer-page extraction; the local HTTP crawl was blocked by DNS and produced no new candidates. Never put provider secrets in browser code.
+No AI, live search API, automatic device/network tests, screenshot recognition, video ranking or live outage checks are connected. External searches open Google/YouTube and send their query terms to those providers. Version notes are context, not verified compatibility. No support messages are sent automatically.
+
+The bounded collector remains available for producing unreviewed candidates. Local HTTP collection is blocked by DNS in this environment; the active guides were assembled through web-assisted review of primary documentation. See scripts/COLLECTION.md.
