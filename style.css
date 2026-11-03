@@ -28,3 +28,4 @@ body {
 @media (forced-colors: active) {
   body, .hero { background-image: none; }
 }
+.creator-credit{display:inline-flex;align-items:center;gap:8px;letter-spacing:normal;text-transform:none}.creator-credit img{object-fit:contain;flex:none}
