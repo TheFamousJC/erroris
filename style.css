@@ -29,3 +29,4 @@ body {
   body, .hero { background-image: none; }
 }
 .creator-credit{display:inline-flex;align-items:center;gap:8px;letter-spacing:normal;text-transform:none}.creator-credit img{object-fit:contain;flex:none}
+.header-brand{object-fit:contain;flex:none;margin-inline-end:auto}
